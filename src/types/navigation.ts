@@ -17,10 +17,17 @@ export type FavoritesStackParamList = {
   FavoriteDetails: { productId: string };
 };
 
+// Stack navigator params for Cart tab
+export type CartStackParamList = {
+  Cart: undefined;
+  CartProductDetails: { productId: string };
+};
+
 // Bottom tab navigator params
 export type RootTabParamList = {
   ProductsTab: NavigatorScreenParams<ProductsStackParamList>;
   FavoritesTab: NavigatorScreenParams<FavoritesStackParamList>;
+  CartTab: NavigatorScreenParams<CartStackParamList>;
 };
 
 // Screen props for screens in Products stack
@@ -30,6 +37,10 @@ export type ProductsStackScreenProps<T extends keyof ProductsStackParamList> =
 // Screen props for screens in Favorites stack
 export type FavoritesStackScreenProps<T extends keyof FavoritesStackParamList> =
   NativeStackScreenProps<FavoritesStackParamList, T>;
+
+// Screen props for screens in Cart stack
+export type CartStackScreenProps<T extends keyof CartStackParamList> =
+  NativeStackScreenProps<CartStackParamList, T>;
 
 // Screen props for tab screens with nested navigation
 export type RootTabScreenProps<T extends keyof RootTabParamList> =

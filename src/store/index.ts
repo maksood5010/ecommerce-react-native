@@ -1,17 +1,24 @@
 import { configureStore } from '@reduxjs/toolkit';
 import productsReducer from './slices/productsSlice';
 import favoritesReducer from './slices/favoritesSlice';
+import cartReducer from './slices/cartSlice';
 import { saveFavorites } from './slices/favoritesSlice';
+import { saveCart } from './slices/cartSlice';
+import type { CartItem } from '../types';
 
 export const store = configureStore({
   reducer: {
     products: productsReducer,
     favorites: favoritesReducer,
+    cart: cartReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
-        ignoredActions: ['favorites/saveFavorites/fulfilled'],
+        ignoredActions: [
+          'favorites/saveFavorites/fulfilled',
+          'cart/saveCart/fulfilled',
+        ],
       },
     }),
 });
@@ -29,6 +36,22 @@ store.subscribe(() => {
   ) {
     previousFavorites = [...currentFavorites];
     store.dispatch(saveFavorites(currentFavorites));
+  }
+});
+
+// Auto-save cart to AsyncStorage when it changes
+let previousCart: CartItem[] = [];
+
+store.subscribe(() => {
+  const state = store.getState();
+  const currentCart = state.cart.items;
+
+  if (
+    state.cart.hydrated &&
+    JSON.stringify(previousCart) !== JSON.stringify(currentCart)
+  ) {
+    previousCart = [...currentCart];
+    store.dispatch(saveCart(currentCart));
   }
 });
 
@@ -59,3 +82,19 @@ export {
   selectFavoritesHydrated,
   selectFavoritesCount,
 } from './slices/favoritesSlice';
+
+export {
+  addToCart,
+  removeFromCart,
+  updateQuantity,
+  incrementQuantity,
+  decrementQuantity,
+  clearCart,
+  loadCart,
+  saveCart,
+  selectCartItems,
+  selectCartItemCount,
+  selectCartItemById,
+  selectIsInCart,
+  selectCartHydrated,
+} from './slices/cartSlice';

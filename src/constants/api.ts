@@ -7,6 +7,7 @@ export const PRODUCTS_API_URL = `${API_CONFIG.BASE_URL}${API_CONFIG.PRODUCTS_END
 
 export const STORAGE_KEYS = {
   FAVORITES: '@ecommerce_favorites',
+  CART: '@ecommerce_cart',
 } as const;
 
 export const DEEP_LINK_CONFIG = {

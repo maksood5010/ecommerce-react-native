@@ -1,20 +1,32 @@
+import React, { useEffect } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { Provider } from 'react-redux';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { store, loadFavorites, loadCart, fetchProducts } from './src/store';
+import { RootNavigator } from './src/navigation';
 
-export default function App() {
+function AppContent() {
+  useEffect(() => {
+    // Load persisted data and fetch products on app start
+    store.dispatch(loadFavorites());
+    store.dispatch(loadCart());
+    store.dispatch(fetchProducts());
+  }, []);
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
+    <>
       <StatusBar style="auto" />
-    </View>
+      <RootNavigator />
+    </>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default function App() {
+  return (
+    <Provider store={store}>
+      <SafeAreaProvider>
+        <AppContent />
+      </SafeAreaProvider>
+    </Provider>
+  );
+}
