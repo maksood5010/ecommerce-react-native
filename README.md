@@ -4,9 +4,16 @@ A cross-platform e-commerce mobile application built with React Native/Expo and 
 
 ## 📱 Screenshots
 
-| List Screen | Details Screen | Favorites | Cart |
-|-------------|----------------|-----------|------|
-| Product grid with search | Product details with add to cart | Saved favorites | Shopping cart |
+<p align="center">
+  <img src="screenshots/products.png" width="200" alt="Products List" />
+  <img src="screenshots/details.png" width="200" alt="Product Details" />
+  <img src="screenshots/favorites.png" width="200" alt="Favorites" />
+  <img src="screenshots/cart.png" width="200" alt="Cart" />
+</p>
+
+| Products | Details | Favorites | Cart |
+|----------|---------|-----------|------|
+| Product grid with search | Product details with add to cart | Saved favorites | Shopping cart with quantity controls |
 
 ## 🚀 Getting Started
 
