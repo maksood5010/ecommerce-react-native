@@ -68,7 +68,6 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.surface,
     borderRadius: BORDER_RADIUS.lg,
     paddingHorizontal: SPACING.md,
-    marginHorizontal: SPACING.lg,
     marginVertical: SPACING.md,
     height: 48,
     borderWidth: 1,
@@ -82,11 +81,6 @@ const styles = StyleSheet.create({
     fontSize: FONT_SIZES.md,
     color: COLORS.textPrimary,
     paddingVertical: SPACING.sm,
-    ...Platform.select({
-      web: {
-        outlineStyle: 'none',
-      },
-    }),
   },
   clearButton: {
     marginLeft: SPACING.sm,
