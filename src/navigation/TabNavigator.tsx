@@ -6,7 +6,7 @@ import { ProductsStackNavigator } from './ProductsStackNavigator';
 import { FavoritesStackNavigator } from './FavoritesStackNavigator';
 import { CartStackNavigator } from './CartStackNavigator';
 import { useAppSelector, selectFavoritesCount, selectCartItemCount } from '../store';
-import { COLORS } from '../constants';
+import { COLORS, FONT_SIZES } from '../constants';
 
 const Tab = createBottomTabNavigator<RootTabParamList>();
 
@@ -45,6 +45,9 @@ export const TabNavigator: React.FC = () => {
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="heart-outline" size={size} color={color} />
           ),
+          tabBarBadgeStyle: {
+            fontSize: FONT_SIZES.xs,
+          },
           tabBarBadge: favoritesCount > 0 ? favoritesCount : undefined,
           tabBarAccessibilityLabel: `Favorites tab, ${favoritesCount} items`,
         }}
@@ -57,6 +60,9 @@ export const TabNavigator: React.FC = () => {
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="cart-outline" size={size} color={color} />
           ),
+          tabBarBadgeStyle: {
+            fontSize: FONT_SIZES.xs,
+          },
           tabBarBadge: cartItemCount > 0 ? cartItemCount : undefined,
           tabBarAccessibilityLabel: `Cart tab, ${cartItemCount} items`,
         }}

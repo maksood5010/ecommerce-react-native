@@ -11,7 +11,7 @@ import {
   toggleFavorite,
 } from '../store';
 import { ProductGrid, EmptyState } from '../components';
-import { COLORS } from '../constants';
+import { COLORS, SPACING } from '../constants';
 
 type NavigationProp = NativeStackNavigationProp<FavoritesStackParamList, 'Favorites'>;
 
@@ -60,6 +60,7 @@ export const FavoritesScreen: React.FC = () => {
         onProductPress={handleProductPress}
         onToggleFavorite={handleToggleFavorite}
         emptyMessage="No favorites yet"
+        ListHeaderComponent={<View style={{ paddingTop: SPACING.xl }} />}
       />
     </View>
   );

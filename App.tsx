@@ -1,17 +1,14 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { Provider } from 'react-redux';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { store, loadFavorites, loadCart, fetchProducts } from './src/store';
+import { store } from './src/store';
 import { RootNavigator } from './src/navigation';
+import { useHydrateStorage } from './src/hooks';
 
 function AppContent() {
-  useEffect(() => {
-    // Load persisted data and fetch products on app start
-    store.dispatch(loadFavorites());
-    store.dispatch(loadCart());
-    store.dispatch(fetchProducts());
-  }, []);
+  // Load persisted data (favorites, cart) and fetch products on app start
+  useHydrateStorage();
 
   return (
     <>
