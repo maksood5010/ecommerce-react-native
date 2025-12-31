@@ -5,10 +5,10 @@ A cross-platform e-commerce mobile application built with React Native/Expo and 
 ## 📱 Screenshots
 
 <p align="center">
-  <img src="screenshots/products.png" width="200" alt="Products List" />
-  <img src="screenshots/details.png" width="200" alt="Product Details" />
-  <img src="screenshots/favorites.png" width="200" alt="Favorites" />
-  <img src="screenshots/cart.png" width="200" alt="Cart" />
+  <img src="screenshots/Screenshot_ecommerce-react-native-1.jpg" width="200" alt="Products List" />
+  <img src="screenshots/Screenshot_ecommerce-react-native-3.jpg" width="200" alt="Product Details" />
+  <img src="screenshots/Screenshot_ecommerce-react-native-2.jpg" width="200" alt="Favorites" />
+  <img src="screenshots/Screenshot_ecommerce-react-native-4.jpg" width="200" alt="Cart" />
 </p>
 
 | Products | Details | Favorites | Cart |
