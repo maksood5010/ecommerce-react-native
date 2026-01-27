@@ -239,20 +239,20 @@ describe('favoritesSlice async thunks', () => {
       (AsyncStorage.getItem as jest.Mock).mockResolvedValue(
         JSON.stringify(savedFavorites)
       );
-      
-      await store.dispatch(loadFavorites());
-      
-      const state = store.getState().favorites;
+
+      await (store.dispatch as any)(loadFavorites());
+
+      const state = (store.getState() as any).favorites;
       expect(state.ids).toEqual(savedFavorites);
       expect(state.hydrated).toBe(true);
     });
 
     it('should return empty array when no saved favorites', async () => {
       (AsyncStorage.getItem as jest.Mock).mockResolvedValue(null);
-      
-      await store.dispatch(loadFavorites());
-      
-      const state = store.getState().favorites;
+
+      await (store.dispatch as any)(loadFavorites());
+
+      const state = (store.getState() as any).favorites;
       expect(state.ids).toEqual([]);
       expect(state.hydrated).toBe(true);
     });
@@ -261,10 +261,10 @@ describe('favoritesSlice async thunks', () => {
       (AsyncStorage.getItem as jest.Mock).mockRejectedValue(
         new Error('Storage error')
       );
-      
-      await store.dispatch(loadFavorites());
-      
-      expect(store.getState().favorites.hydrated).toBe(true);
+
+      await (store.dispatch as any)(loadFavorites());
+
+      expect((store.getState() as any).favorites.hydrated).toBe(true);
     });
   });
 });

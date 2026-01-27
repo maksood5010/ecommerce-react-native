@@ -193,23 +193,23 @@ describe('productsSlice async thunks', () => {
   describe('fetchProducts', () => {
     it('should set loading to true when pending', () => {
       // Start the fetch but don't resolve it yet
-      store.dispatch(fetchProducts());
-      
-      const state = store.getState().products;
+      (store.dispatch as any)(fetchProducts());
+
+      const state = (store.getState() as any).products;
       expect(state.loading).toBe(true);
       expect(state.error).toBeNull();
     });
 
     it('should load products when fulfilled', async () => {
       // Dispatch and wait for completion
-      const promise = store.dispatch(fetchProducts());
+      const promise = (store.dispatch as any)(fetchProducts());
       
       // Fast-forward timers to skip the simulated delay
       jest.advanceTimersByTime(500);
       
       await promise;
-      
-      const state = store.getState().products;
+
+      const state = (store.getState() as any).products;
       expect(state.loading).toBe(false);
       expect(state.items).toHaveLength(2);
       expect(state.error).toBeNull();
@@ -220,9 +220,9 @@ describe('productsSlice async thunks', () => {
       store.dispatch(clearError());
       
       // Then fetch - pending state should clear error
-      store.dispatch(fetchProducts());
-      
-      expect(store.getState().products.error).toBeNull();
+      (store.dispatch as any)(fetchProducts());
+
+      expect((store.getState() as any).products.error).toBeNull();
     });
   });
 });

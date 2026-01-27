@@ -417,10 +417,11 @@ describe('cartSlice async thunks', () => {
       );
       
       // Act: Dispatch the loadCart thunk
-      await store.dispatch(loadCart());
+      //await store.dispatch(loadCart());
+      await (store.dispatch as any)(loadCart());
       
       // Assert: Check state was updated
-      const state = store.getState().cart;
+      const state = (store.getState() as any).cart;
       expect(state.items).toEqual(savedCart);
       expect(state.hydrated).toBe(true);
     });
@@ -430,10 +431,10 @@ describe('cartSlice async thunks', () => {
       (AsyncStorage.getItem as jest.Mock).mockResolvedValue(null);
       
       // Act
-      await store.dispatch(loadCart());
+      await (store.dispatch as any)(loadCart());
       
       // Assert
-      const state = store.getState().cart;
+      const state = (store.getState() as any).cart;
       expect(state.items).toEqual([]);
       expect(state.hydrated).toBe(true);
     });
@@ -445,10 +446,10 @@ describe('cartSlice async thunks', () => {
       );
       
       // Act
-      await store.dispatch(loadCart());
+      await (store.dispatch as any)(loadCart());
       
       // Assert: hydrated should still be true (app can continue)
-      const state = store.getState().cart;
+      const state = (store.getState() as any).cart;
       expect(state.hydrated).toBe(true);
     });
   });
@@ -460,7 +461,7 @@ describe('cartSlice async thunks', () => {
       (AsyncStorage.setItem as jest.Mock).mockResolvedValue(undefined);
       
       // Act
-      await store.dispatch(saveCart(cartItems));
+      await (store.dispatch as any)(saveCart(cartItems));
       
       // Assert: Verify AsyncStorage was called correctly
       expect(AsyncStorage.setItem).toHaveBeenCalledWith(
